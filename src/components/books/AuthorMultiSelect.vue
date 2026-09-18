@@ -67,3 +67,34 @@ function clear() {
   emit('update:modelValue', [])
 }
 </script>
+
+<style scoped>
+.author-filter {
+  position: relative;
+}
+
+.author-filter__menu {
+  position: absolute;
+  z-index: 20;
+  width: 100%;
+  max-height: 18rem;
+  overflow-y: auto;
+  margin-top: 0.45rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+.form-select {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-check {
+  cursor: pointer;
+}
+</style>

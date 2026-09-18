@@ -1,6 +1,7 @@
 <template>
-  <form class="card card-body subscription-card" @submit.prevent="submit">
-    <h2 class="h5 mb-2">Подписка на новые книги</h2>
+  <form class="subscription-card card card-body" @submit.prevent="submit">
+    <p class="subscription-card__eyebrow">Уведомления</p>
+    <h2 class="subscription-card__title">Подписка на новые книги</h2>
     <p class="small text-secondary mb-3">
       Оставьте номер, и мы отправим уведомление, когда появится новая книга выбранного автора.
     </p>
@@ -70,3 +71,35 @@ function submit() {
   emit('subscribe', { phone: phone.value, authorIds: authorIds.value.map(Number) })
 }
 </script>
+
+<style scoped>
+.subscription-card {
+  max-width: 32rem;
+  padding: 1.5rem;
+}
+
+.subscription-card__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.subscription-card__title {
+  margin: 0 0 0.5rem;
+  color: var(--ink);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 768px) {
+  .subscription-card {
+    max-width: none;
+    padding: 1.125rem;
+  }
+}
+</style>

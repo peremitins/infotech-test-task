@@ -1,20 +1,18 @@
 <template>
-  <div v-if="!authors.length" class="text-secondary">Авторы не найдены.</div>
-  <div v-else class="list-group shadow-sm">
-    <RouterLink
-      v-for="author in authors"
-      :key="author.id"
-      class="list-group-item list-group-item-action d-flex justify-content-between"
-      :to="{ name: 'author', params: { id: author.id } }"
-    >
-      <span>{{ author.full_name }}</span>
-      <span class="text-secondary">Открыть</span>
-    </RouterLink>
-  </div>
+  <EntityList :items="authors" aria-label="Список авторов">
+    <template #default="{ item: author }">
+      <RouterLink class="entity-list__link" :to="{ name: 'author', params: { id: author.id } }">
+        <span class="entity-list__title">{{ author.full_name }}</span>
+        <span class="entity-list__action">Открыть</span>
+      </RouterLink>
+    </template>
+    <template #empty>Авторы не найдены.</template>
+  </EntityList>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router'
+import EntityList from '../common/EntityList.vue'
 
 defineProps({
   authors: {

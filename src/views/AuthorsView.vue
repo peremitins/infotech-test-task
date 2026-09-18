@@ -1,8 +1,9 @@
 <template>
-  <section class="d-flex flex-wrap justify-content-between gap-3 align-items-start mb-4">
-    <div>
-      <h1 class="page-title h2 mb-1">Авторы</h1>
-      <p class="text-secondary mb-0">Список авторов каталога.</p>
+  <section class="page-heading">
+    <div class="page-heading__copy">
+      <p class="page-eyebrow">Люди книги</p>
+      <h1 class="page-title">Авторы</h1>
+      <p class="page-description">Имена, за которыми стоят книги этого каталога.</p>
     </div>
     <RouterLink
       v-if="auth.isAuthenticated.value"
@@ -11,7 +12,7 @@
       >Добавить автора</RouterLink
     >
   </section>
-  <div class="mb-4">
+  <div class="author-search mb-4">
     <label class="form-label visually-hidden" for="author-search">Поиск автора</label>
     <input id="author-search" v-model="search" class="form-control" placeholder="Найти автора" />
   </div>
@@ -44,3 +45,9 @@ watch(search, () => schedule(load))
 
 onMounted(load)
 </script>
+
+<style scoped>
+.author-search {
+  max-width: 42rem;
+}
+</style>

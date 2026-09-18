@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { sendNewBookNotifications } from './sms'
+import { sendNewBookNotifications } from '../../services/sms'
 
 describe('СМС-уведомления', () => {
   afterEach(() => vi.unstubAllGlobals())

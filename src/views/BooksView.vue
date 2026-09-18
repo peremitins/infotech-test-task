@@ -1,8 +1,11 @@
 <template>
-  <section class="d-flex flex-wrap justify-content-between gap-3 align-items-start mb-4">
-    <div>
-      <h1 class="page-title h2 mb-1">Каталог книг</h1>
-      <p class="text-secondary mb-0">Книги и авторы из демонстрационного API.</p>
+  <section class="page-heading">
+    <div class="page-heading__copy">
+      <p class="page-eyebrow">Библиотека</p>
+      <h1 class="page-title">Каталог книг</h1>
+      <p class="page-description">
+        Открывайте книги, авторов и истории, которые хочется сохранить.
+      </p>
     </div>
     <RouterLink
       v-if="auth.isAuthenticated.value"
@@ -12,7 +15,7 @@
     >
   </section>
 
-  <div class="card card-body mb-4">
+  <div class="card card-body catalog-filter mb-4">
     <div class="row g-3">
       <div class="col-md-5">
         <label class="form-label" for="book-search">Поиск</label
@@ -156,3 +159,27 @@ onMounted(async () => {
   await Promise.all([loadAuthors(), loadBooks()])
 })
 </script>
+
+<style scoped>
+.catalog-filter {
+  padding: 1.5rem;
+}
+
+.btn-filter-active {
+  color: var(--brand);
+  border-color: #9fb6a9;
+  background: #edf3ee;
+}
+
+.btn-filter-active:hover {
+  color: #fffefa;
+  border-color: var(--brand);
+  background: var(--brand);
+}
+
+@media (max-width: 768px) {
+  .catalog-filter {
+    padding: 1.125rem;
+  }
+}
+</style>

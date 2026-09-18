@@ -1,6 +1,6 @@
 import { flushPromises, mount, RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
-import ReportView from './ReportView.vue'
+import ReportView from '../../views/ReportView.vue'
 
 function mountView() {
   const api = {

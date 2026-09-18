@@ -1,6 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
-import AuthorsView from './AuthorsView.vue'
+import AuthorsView from '../../views/AuthorsView.vue'
 
 describe('страница авторов', () => {
   it('обновляет список после поиска с задержкой без кнопки отправки', async () => {

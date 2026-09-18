@@ -5,7 +5,7 @@ import {
   getBooks,
   getSubscribersForAuthors,
   resetDatabase,
-} from './database'
+} from '../../mocks/database'
 
 describe('демонстрационная база данных', () => {
   beforeEach(() => {

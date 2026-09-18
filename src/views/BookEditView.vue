@@ -1,10 +1,11 @@
 <template>
-  <section class="row justify-content-center">
+  <section class="row justify-content-center form-page">
     <div class="col-xl-8">
-      <h1 class="page-title h2 mb-4">
-        {{ isEdit ? 'Редактирование книги' : 'Новая книга' }}
-      </h1>
-      <form class="card card-body p-4" @submit.prevent="submit">
+      <div class="form-page__heading">
+        <p class="page-eyebrow">Каталог</p>
+        <h1 class="page-title">{{ isEdit ? 'Редактирование книги' : 'Новая книга' }}</h1>
+      </div>
+      <form class="card card-body form-page__card" @submit.prevent="submit">
         <div v-if="error" class="alert alert-danger">{{ error }}</div>
         <div class="row g-3">
           <div class="col-md-8">
@@ -202,12 +203,27 @@ onMounted(load)
 <style scoped>
 .new-authors {
   margin: 0;
-  padding: 1rem;
-  border: 1px solid var(--bs-border-color);
-  border-radius: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface-muted);
 }
 
 .new-authors__field {
   max-width: 36rem;
+}
+
+.form-page__heading {
+  margin-bottom: 1.75rem;
+}
+
+.form-page__card {
+  padding: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .form-page__card {
+    padding: 1.125rem;
+  }
 }
 </style>

@@ -24,6 +24,7 @@ https://peremitins.github.io/infotech-test-task/
 - `src/api` — клиент REST API;
 - `src/mocks` — локальная реализация демонстрационного API;
 - `src/composables` — общая логика Composition API.
+- `src/test` — тесты с зеркальной структурой исходных модулей.
 
 ## Возможности
 

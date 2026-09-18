@@ -1,6 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
-import BookEditView from './BookEditView.vue'
+import BookEditView from '../../views/BookEditView.vue'
 
 const push = vi.fn()
 

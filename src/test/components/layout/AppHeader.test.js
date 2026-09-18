@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import AppHeader from './AppHeader.vue'
+import AppHeader from '../../../components/layout/AppHeader.vue'
 
 const RouterLinkStub = {
   template: '<a class="router-link"><slot /></a>',

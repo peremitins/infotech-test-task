@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import AuthorSubscriptionForm from './AuthorSubscriptionForm.vue'
+import AuthorSubscriptionForm from '../../../components/subscriptions/AuthorSubscriptionForm.vue'
 
 const authors = [
   { id: 1, full_name: 'Роберт Мартин' },

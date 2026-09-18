@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { useDebounce } from './useDebounce'
+import { useDebounce } from '../../composables/useDebounce'
 
 describe('композабл задержки', () => {
   it('запускает только последнюю отложенную функцию после задержки', () => {

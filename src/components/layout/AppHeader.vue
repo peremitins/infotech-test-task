@@ -1,7 +1,10 @@
 <template>
   <header class="app-header">
     <div class="container app-header__inner">
-      <RouterLink class="app-header__brand" :to="{ name: 'books' }">Книжный каталог</RouterLink>
+      <RouterLink class="app-header__brand" :to="{ name: 'books' }">
+        <span class="app-header__monogram" aria-hidden="true">К</span>
+        <span>Книжный каталог</span>
+      </RouterLink>
 
       <nav class="app-header__nav" aria-label="Основная навигация">
         <RouterLink class="app-header__link" :to="{ name: 'books' }">Книги</RouterLink>
@@ -36,50 +39,76 @@ defineEmits(['logout'])
 <style scoped>
 .app-header {
   position: sticky;
-  z-index: 1020;
+  z-index: 100;
   top: 0;
-  border-bottom: 1px solid #e2e8f0;
-  background: #fff;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 254, 250, 0.92);
+  backdrop-filter: blur(14px);
 }
 
 .app-header__inner {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  min-height: 4.5rem;
+  gap: 1.5rem;
+  min-height: 5rem;
 }
 
 .app-header__brand {
-  color: #2563eb;
-  font-size: 1.125rem;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--ink);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.035em;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.app-header__monogram {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 0.55rem;
+  background: var(--brand);
+  color: #fffefa;
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .app-header__nav {
   display: flex;
   flex: 1;
+  min-width: 0;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.35rem;
 }
 
 .app-header__link {
   position: relative;
-  padding: 0.5rem 0.75rem;
-  color: #475569;
-  font-weight: 500;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.45rem;
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+  font-weight: 700;
   text-decoration: none;
+  transition:
+    color 0.18s ease,
+    background-color 0.18s ease;
 }
 
 .app-header__link::after {
   position: absolute;
   right: 0.75rem;
-  bottom: 0.1rem;
-  left: 0.75rem;
+  bottom: -0.15rem;
+  left: 0.7rem;
   height: 2px;
-  border-radius: 999px;
-  background: #2563eb;
+  border-radius: 1px;
+  background: var(--accent);
   content: '';
   opacity: 0;
   transform: scaleX(0.5);
@@ -90,7 +119,8 @@ defineEmits(['logout'])
 
 .app-header__link:hover,
 .app-header__link.router-link-active {
-  color: #1d4ed8;
+  color: var(--brand);
+  background: #eef3ee;
 }
 
 .app-header__link.router-link-active::after {
@@ -106,21 +136,22 @@ defineEmits(['logout'])
 }
 
 .app-header__username {
-  color: #64748b;
+  color: var(--ink-muted);
   font-size: 0.875rem;
+  font-weight: 700;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .app-header__inner {
     flex-wrap: wrap;
-    gap: 0.5rem 0.75rem;
+    gap: 0.75rem;
     min-height: 0;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
   }
 
   .app-header__brand {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .app-header__nav {
@@ -133,25 +164,28 @@ defineEmits(['logout'])
 
   .app-header__link {
     flex: 1 1 0;
-    padding: 0.5rem 0.25rem;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0.55rem 0.25rem;
     font-size: 0.9375rem;
     text-align: center;
+    text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .app-header__link::after {
-    right: 0.25rem;
-    left: 0.25rem;
-  }
-}
-
-@media (max-width: 359.98px) {
-  .app-header__link {
-    font-size: 0.8125rem;
+    right: 0.5rem;
+    left: 0.5rem;
   }
 
   .app-header__username {
     display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .app-header__link {
+    font-size: 0.8125rem;
   }
 }
 

@@ -1,6 +1,6 @@
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, it, vi } from 'vitest'
-import BooksView from './BooksView.vue'
+import BooksView from '../../views/BooksView.vue'
 
 const firstBook = {
   id: 1,

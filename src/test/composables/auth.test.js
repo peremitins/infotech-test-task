@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest'
-import { createAuth } from './auth'
+import { createAuth } from '../../composables/auth'
 
 describe('состояние авторизации', () => {
   beforeEach(() => localStorage.clear())

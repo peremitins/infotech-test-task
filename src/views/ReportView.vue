@@ -1,8 +1,13 @@
 <template>
   <section>
-    <h1 class="page-title h2">Топ-10 авторов</h1>
-    <p class="text-secondary">Рейтинг по числу выпущенных книг за выбранный период.</p>
-    <div class="report-filter my-4">
+    <div class="page-heading report-heading">
+      <div class="page-heading__copy">
+        <p class="page-eyebrow">Рейтинг</p>
+        <h1 class="page-title">Топ-10 авторов</h1>
+        <p class="page-description">Рейтинг по числу выпущенных книг за выбранный период.</p>
+      </div>
+    </div>
+    <div class="report-filter card card-body mb-4">
       <label class="form-label" for="report-year">Год выпуска</label>
       <select id="report-year" v-model="year" class="form-control">
         <option value="">За всё время</option>
@@ -12,24 +17,22 @@
       </select>
     </div>
     <div v-if="error" class="alert alert-danger">{{ error }}</div>
-    <div v-else-if="report" class="card">
-      <div v-if="!report.items.length" class="card-body text-secondary">
-        {{ emptyMessage }}
-      </div>
-      <ol v-else class="list-group list-group-numbered list-group-flush">
-        <li v-for="author in report.items" :key="author.author_id" class="list-group-item d-flex">
+    <div v-else-if="report">
+      <EntityList :items="report.items" :ordered="true" aria-label="Рейтинг авторов">
+        <template #default="{ item: author }">
           <RouterLink
+            class="entity-list__link"
             :to="{ name: 'author', params: { id: author.author_id } }"
             :data-test="`report-author-${author.author_id}`"
-            class="link-primary link-offset-2"
           >
-            {{ author.full_name }}
+            <span class="entity-list__title">{{ author.full_name }}</span>
+            <span class="badge text-bg-primary rounded-pill count-badge">
+              {{ author.books_count }}
+            </span>
           </RouterLink>
-          <span class="d-flex align-items-center badge text-bg-primary rounded-pill count-badge">
-            {{ author.books_count }}
-          </span>
-        </li>
-      </ol>
+        </template>
+        <template #empty>{{ emptyMessage }}</template>
+      </EntityList>
     </div>
   </section>
 </template>
@@ -37,6 +40,7 @@
 <script setup>
 import { computed, inject, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
+import EntityList from '../components/common/EntityList.vue'
 import { useDebounce } from '../composables/useDebounce'
 
 const api = inject('api')
@@ -79,7 +83,25 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.count-badge {
-  margin-left: auto;
+.report-heading {
+  margin-bottom: 1.5rem;
+}
+
+.report-filter {
+  max-width: 20rem;
+  padding: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .report-filter {
+    max-width: none;
+  }
+}
+
+:deep(.count-badge) {
+  min-width: 2.1rem;
+  padding: 0.45rem 0.6rem;
+  background: var(--brand) !important;
+  font-variant-numeric: tabular-nums;
 }
 </style>

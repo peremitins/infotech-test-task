@@ -1,13 +1,14 @@
 <template>
-  <section class="row justify-content-center">
+  <section class="row justify-content-center form-page">
     <div class="col-lg-7">
-      <h1 class="page-title h2 mb-4">
-        {{ isEdit ? 'Редактирование автора' : 'Новый автор' }}
-      </h1>
-      <form class="card card-body p-4" @submit.prevent="submit">
+      <div class="form-page__heading">
+        <p class="page-eyebrow">Авторы</p>
+        <h1 class="page-title">{{ isEdit ? 'Редактирование автора' : 'Новый автор' }}</h1>
+      </div>
+      <form class="card card-body form-page__card" @submit.prevent="submit">
         <div v-if="error" class="alert alert-danger">{{ error }}</div>
-        <label class="form-label required" for="author-name">ФИО</label
-        ><input id="author-name" v-model="fullName" class="form-control" required />
+        <label class="form-label required" for="author-name">ФИО</label>
+        <input id="author-name" v-model="fullName" class="form-control" required />
         <div class="d-flex gap-2 mt-4">
           <button class="btn btn-primary" :disabled="pending">
             {{ pending ? 'Сохранение...' : 'Сохранить' }}</button
@@ -60,3 +61,19 @@ async function submit() {
   }
 }
 </script>
+
+<style scoped>
+.form-page__heading {
+  margin-bottom: 1.75rem;
+}
+
+.form-page__card {
+  padding: 1.75rem;
+}
+
+@media (max-width: 768px) {
+  .form-page__card {
+    padding: 1.125rem;
+  }
+}
+</style>

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getServiceWorkerUrl } from './serviceWorker'
+import { getServiceWorkerUrl } from '../../mocks/serviceWorker'
 
 describe('адрес сервис-воркера', () => {
   it('сохраняет базовый путь репозитория в сборке для публикации', () => {

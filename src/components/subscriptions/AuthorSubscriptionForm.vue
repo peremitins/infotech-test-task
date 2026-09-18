@@ -1,0 +1,72 @@
+<template>
+  <form class="card card-body subscription-card" @submit.prevent="submit">
+    <h2 class="h5 mb-2">Подписка на новые книги</h2>
+    <p class="small text-secondary mb-3">
+      Оставьте номер, и мы отправим уведомление, когда появится новая книга выбранного автора.
+    </p>
+
+    <fieldset class="mb-3">
+      <legend class="form-label mb-2">Авторы</legend>
+      <div v-for="author in authors" :key="author.id" class="form-check">
+        <input
+          :id="`subscription-author-${author.id}`"
+          v-model="authorIds"
+          class="form-check-input"
+          type="checkbox"
+          :value="author.id"
+        />
+        <label class="form-check-label" :for="`subscription-author-${author.id}`">
+          {{ author.full_name }}
+        </label>
+      </div>
+    </fieldset>
+
+    <label class="form-label" for="subscription-phone">Телефон</label>
+    <input
+      id="subscription-phone"
+      v-model.trim="phone"
+      class="form-control"
+      type="tel"
+      inputmode="tel"
+      autocomplete="tel"
+      placeholder="+79991234567"
+    />
+    <p v-if="error" class="small text-danger mt-2 mb-0">{{ error }}</p>
+
+    <button class="btn btn-primary mt-3" type="submit">Подписаться</button>
+  </form>
+</template>
+
+<script setup>
+import { ref, watch } from 'vue'
+
+const props = defineProps({
+  authors: { type: Array, default: () => [] },
+})
+const emit = defineEmits(['subscribe'])
+const authorIds = ref([])
+const phone = ref('')
+const error = ref('')
+
+watch(
+  () => props.authors,
+  (authors) => {
+    authorIds.value = authors.map((author) => author.id)
+  },
+  { immediate: true },
+)
+
+function submit() {
+  error.value = ''
+  if (!authorIds.value.length) {
+    error.value = 'Выберите хотя бы одного автора.'
+    return
+  }
+  if (!/^\+7\d{10}$/.test(phone.value)) {
+    error.value = 'Введите номер в формате +79991234567.'
+    return
+  }
+
+  emit('subscribe', { phone: phone.value, authorIds: authorIds.value.map(Number) })
+}
+</script>

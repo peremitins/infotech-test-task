@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Книжный каталог</title>
+    <script>
+      const path = window.location.pathname
+      const projectPath = '/infotech-test-task'
+      const route = path.startsWith(projectPath) ? path.slice(projectPath.length) : path
+      const query = window.location.search
+      const hash = window.location.hash
+      window.location.replace(`${projectPath}/?p=${encodeURIComponent(route + query + hash)}`)
+    </script>
+  </head>
+  <body></body>
+</html>

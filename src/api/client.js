@@ -7,6 +7,8 @@ export class ApiError extends Error {
   }
 }
 
+const API_BASE = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/api/v1`
+
 function toQuery(params = {}) {
   const query = new URLSearchParams()
   Object.entries(params).forEach(([key, value]) => {
@@ -39,7 +41,7 @@ export function createApiClient(getToken) {
     if (options.body && !(options.body instanceof FormData))
       headers.set('Content-Type', 'application/json')
 
-    const response = await fetch(`/api/v1${path}`, { ...options, headers })
+    const response = await fetch(`${API_BASE}${path}`, { ...options, headers })
     if (response.status === 204) return null
 
     const payload = await response.json()

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import AuthorEditView from '../views/AuthorEditView.vue'
 import AuthorView from '../views/AuthorView.vue'
 import AuthorsView from '../views/AuthorsView.vue'
@@ -9,7 +9,7 @@ import LoginView from '../views/LoginView.vue'
 import ReportView from '../views/ReportView.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', redirect: '/books' },
     { path: '/books', name: 'books', component: BooksView },
